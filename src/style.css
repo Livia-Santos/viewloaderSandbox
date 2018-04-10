@@ -1,0 +1,62 @@
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+html {
+  font-family: 'helvetica neue', sans-serif;
+  font-weight: 100;
+  text-align: center;
+}
+
+section {
+  margin-top: 50px;
+}
+
+/* Setting the flexbox container */
+.color-box {
+  width: 50%;
+  margin: 0 auto;
+  display:flex;
+  flex-wrap: wrap;
+  border:10px solid black;
+  height: 50vh;
+  align-content: center;
+  transition: background-color 0.2s;
+}
+
+/* Some default styles to make each box visible */
+.box {
+  border: 1px solid white;
+  color: white;
+  font-size: 50px;
+  height: 100px;
+  width:20%;
+  text-align: center;
+  text-shadow:4px 4px 0 rgba(0,0,0,0.1);
+  padding:10px;
+}
+
+.btn-default {
+  color: white;
+  font-size: 20px;
+  text-shadow: none;
+  border: 1px solid white;
+  padding: 15px;
+  border-radius: 4px;
+  background-color: #5C526F;
+}
+
+.scope-main-box {
+  display: flex;
+  margin: 0 auto;
+  border: 2px solid black;
+  height: 300px;
+  width: 300px;
+  transition: background-color 0.3s;
+}
+
+.scope-inner-box {
+  margin: auto;
+  border: 2px solid black;
+  height: 150px;
+  width:150px;
+  transition: background-color 0.3s;
+}

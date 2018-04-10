@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" src="../src/style.css" media="screen" />
+  <title>Viewloader Playground</title>
+</head>
+<body>
+  <h1>Viewloader Playground</h1>
+
+  <h3>Greeting Example</h3>
+   <div data-view-greeting='World!'> <div>
+
+
+  <section class="example two">
+    <div class="container">
+      <h2>Change the background example - Background mouse over</h2>
+      <div class="color-box">
+        <div class="box box1" data-view-change-color='#5C526F'>1</div>
+        <div class="box box2" data-view-change-color='#7CBB97'>2</div>
+        <div class="box box3" data-view-change-color='#E78A37'>3</div>
+        <div class="box box4" data-view-change-color='#F05051'>4</div>
+        <div class="box box5" data-view-change-color='#5C526F'>5</div>
+        <div class="box box6" data-view-change-color='#E4E0C7'>6</div>
+        <div class="box box7" data-view-change-color='#D4AE89'>7</div>
+        <div class="box box8" data-view-change-color='#CD6C40'>8</div>
+        <div class="box box9" data-view-change-color='#414547'>9</div>
+        <div class="box box10" data-view-change-color='#10BFAB'>10</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="example three">
+    <h2>Change element itself example - Change color on click<h2>
+    <button class="btn-default" data-view-change-btn='#10BFAB'>Change Me</button>
+  </section>
+
+  <section class="example four">
+    <div class="container">
+      <h2> Including Scope Example - Border Green (true)</h2>
+      <div class="scope-main-box include-scope" data-view-change-border='#10BFAB'>
+        <div class="scope-inner-box" data-view-change-border='#F05051'></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2> Excluding Scope Example - Border Green (False)</h2>
+      <div class="scope-main-box exclude-scope" data-view-change-border='#10BFAB'>
+        <div class="scope-inner-box" data-view-change-border='#F05051'></div>
+      </div>
+    </div>
+  </section>
+
+<script src='./dist/bundle.js'></script>
+</body>
+</html>
