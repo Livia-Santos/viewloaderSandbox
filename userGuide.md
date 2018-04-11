@@ -38,8 +38,8 @@ These are plain JavaScript functions that expect a DOM Node and some properties.
 
 ``` JavaScript
 // greeting.js
-emodule.exports = function greeting (el, name) {
-  console.log(`Hello, ${name}!`);
+module.exports = function greeting (el, name) {
+  console.log(`Hello, ${name}!`)
 }
 ```
 
@@ -54,14 +54,14 @@ var greeting = require('./greeting');
 
 var views = {
   greeting: greeting
-};
+}
 ```
 
 5) Initialise Viewloader once the DOM is ready.
 
 ``` JavaScript
 //index.js
-viewloader.execute(views);
+viewloader.execute(views)
 ```
 
 ### API
@@ -103,7 +103,7 @@ import changeBtn from './components/change-btn';
 
 var views = {
   changeBtn,
-};
+}
 
 domready(() => viewloader.execute(views))
 
@@ -154,7 +154,7 @@ import changeColor from './components/change-color';
 
 var views = {
   changeColor
-};
+}
 
 domready(() => viewloader.execute(views))
 
@@ -202,7 +202,7 @@ module.exports = function changeBorder(el, borderColor) {
   el.addEventListener('mouseout', function (e) {
     el.style.border = '5px solid black'
   })
-};
+}
 ```
 
 2) Require and execute viewloader component
@@ -250,7 +250,7 @@ module.exports = function changeBorder(el, borderColor) {
   el.addEventListener('mouseout', function (e) {
     el.style.border = '5px solid black'
   })
-};
+}
 ```
 
 2) Require and execute viewloader component
