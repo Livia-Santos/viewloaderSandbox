@@ -3,7 +3,7 @@ import viewloader from 'viewloader';
 import changeBtn from './components/change-btn';
 import changeColor from './components/change-color';
 import changeBorder from './components/change-border';
-import greeting from './components/greeting'
+import greeting from './components/greeting';
 import './style.css';
 
 var views = {

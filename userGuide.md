@@ -1,68 +1,89 @@
 # Viewloader
 
-### Overview
+Viewloader is teensy package that simplifies the process of binding DOM nodes to JavaScript functions. It does this by creating a convention for mapping between the DOM and your JS and ensures that _only_ the functions for the components in the DOM are executed.
 
-##### What is it?
+Let’s create a "Hello, World!" component:
 
-Viewloader is a JavaScript package for organising view behaviour. It works by matching DOM elements to JavaScript functions through specific data attributes.
+```HTML
+// Add a `data-view-*` attribute
+<input data-view-hello-world>
 
-In other words, with Viewloader a `data-view-component-name` attribute can be added to an HTML element, becomes the glue between the DOM and the JavaScript .
+<script>
+  import viewloader from "viewloader";
+  // Create an object to hold our views
+  const views = {
+    // Create a camelCased key matching the dasherized data-view-hello-world
+    // from our HTML: data-view-hello-world -> helloWorld
+    helloWorld: (el, props) => {
+      // The DOM node is passed here as `el` so we can do stuff!
+      el.value = "Hello, World!";
+    }
+  }
+  // Call viewloader with our "views" object whenever the DOM is ready
+  viewloader.execute(views);
 
-##### What’s it for?
+</script>
+```
 
-Viewloader provides a consistent way of bootstrapping each JavaScript component in an app.
-It’s not tied to any particular framework, so we can use it with any type of JavaScript component.
+This simple approach:
 
-It's a good way to organise code, make functions reusable and to trace behavior all the way from the template to a specific JavaScript function.
+* Lets you stop worrying about if your JS is going to be called — if there’s a `data-view-*` in the DOM it will be.
+* Establishes a clear convention for binding JS to the DOM — makes it easy to find where in your codebase behaviour is originating from.
+* Encourages (though doesn’t force) you to encapsulate behaviour within the context of a component’s DOM node.
 
-### How to use it?
-
-1) Install using npm
-
-`% npm install --save viewloader`
-
-
-2) Add data attributes to the HTML.
-
-Viewloader uses a convention in HTML for mapping DOM nodes to functions, and calls its setup function.
+💅🏽 Viewloader has one extra trick up its sleeve that makes it an incredibly powerful pattern: the value of the `data-view-*` attribute will be passed to your matching JS function as a second argument.
 
 ``` HTML
-<!-- index.html -->
-<div data-view-my-greeting='Your Name'></div>
-```
-_Viewloader matches camelCased function names into dash-er-ized attributes in your HTML._
+<input data-view-hello-world="Angela Merkel">
 
-3) Create a Viewloader component.
+<script>
+  import viewloader from "viewloader";
 
-These are plain JavaScript functions that expect a DOM Node and some properties.
+  const views = {
+    helloWorld: (el, name) => {
+      // Our attribute is available here!
+      el.value = `Hello, ${name}!`;
+    }
+  }
 
-``` JavaScript
-// greeting.js
-module.exports = function greeting (el, name) {
-  console.log(`Hello, ${name}!`)
-}
-```
+  viewloader.execute(views);
 
-4) Require Viewloader and the components.
-
-Create an object to hold all the components you want to apply.
-
-``` JavaScript
-// index.js
-var viewloader = require('viewloader');
-var greeting = require('./greeting');
-
-var views = {
-  greeting: greeting
-}
+</script>
 ```
 
-5) Initialise Viewloader once the DOM is ready.
+And for additional ✨ it’ll parse JSON-encoded values from that attribute into a proper object for you:
 
-``` JavaScript
-//index.js
-viewloader.execute(views)
+```HTML
+<input
+    data-view-hello-world="{\"greeting\":\"Guten tag",\"name\":\"Angela Merkel\"}">
+
+<script>
+  import viewloader from "viewloader";
+
+  const views = {
+    helloWorld: (el, props) => {
+      // Our attribute is available here!
+      el.value = `${props.greeting}, ${props.name}!`;
+    }
+  }
+
+  viewloader.execute(views);
+
+</script>
 ```
+
+This gives you the power to create reusable components that can be "called" from your HTML with their own properties.
+
+[Needs sentence to wrap up and point to examples]
+
+* It’s just plain JavaScript
+* No restrictions on what you can do, but no checks on what you do (so be careful!)
+
+### Installation
+
+* Using npm
+* Using yarn
+* Using unpkgd (we’ll need to add a built file for this)
 
 ### API
 #### viewloader.execute(views, scope, includeScope)
@@ -76,56 +97,9 @@ viewloader.execute(views)
 
 ### Detailed examples
 
-[Interactive example here](https://wwww.viewloaderwebpage.com)
+#### Show the power of per-instance props
 
-#### Modifying the target element
-
-Let's use viewloader to create an element that can change its own color.
-
-1) Create a viewloader component.
-
-```JavaScript
-// change-btn.js
-module.exports = function changeBtn(el, color) {
-  el.addEventListener('click', function (e) {
-    el.style.backgroundColor = color
-  })
-}
-```
-
-2) Require and execute viewloader component, using the domready library to guarantee the DOM state.
-
-```JavaScript
-// index.js
-import domready from 'domready';
-import viewloader from 'viewloader';
-import changeBtn from './components/change-btn';
-
-var views = {
-  changeBtn,
-}
-
-domready(() => viewloader.execute(views))
-
-```
-
-3) Add data attributes int the HTML.
-
-Viewloader components receive the `data-view-component-name` tag values as properties.
-You can use that to make reusable components.
-
-```html
-  <!-- index.html -->
-  <button class="btn-default" data-view-change-btn='#10BFAB'>Change Me</button>
-```
-
-####  Modifying other elements
-
-Inside a Viewloader component you can use regular DOM functions to modify other elements.
-
-
-
-1) Create a viewloader component
+* Create a viewloader component
 
 ```JavaScript
 // change-color.js
@@ -144,7 +118,7 @@ module.exports = function changeColor(el, color) {
 }
 ```
 
-2) Require and execute viewloader component, using the domready library to guarantee the DOM state.
+* Require and execute viewloader component, using the domready library to guarantee the DOM state.
 
 ```JavaScript
 // index.js
@@ -160,7 +134,7 @@ domready(() => viewloader.execute(views))
 
 ```
 
-3) Add data attributes int the HTML.
+* Add data attributes int the HTML.
 
 ```HTML
 <!-- index.html -->
@@ -190,7 +164,7 @@ if the scope gets included or not in the viewloader execution.
 
 
 ##### Including the scoped element
-1) Create a viewloader component
+* Create a viewloader component
 
 ``` JavaScript
 // change-border.js
@@ -205,7 +179,7 @@ module.exports = function changeBorder(el, borderColor) {
 }
 ```
 
-2) Require and execute viewloader component
+* Require and execute viewloader component
 
 ```JavaScript
 // index.js
@@ -222,7 +196,7 @@ var scope = document.querySelector('.scope')
 domready(() => viewloader.execute(views, scope, true))
 ```
 
-3) Add data attributes int the HTML.
+* Add data attributes int the HTML.
 
 ``` HTML
 <!-- index.html -->
@@ -238,7 +212,7 @@ domready(() => viewloader.execute(views, scope, true))
 ```
 
 ##### Excluding the scoped element
-1) Create a viewloader component
+* Create a viewloader component
 
 ``` JavaScript
 // change-border.js
@@ -253,7 +227,7 @@ module.exports = function changeBorder(el, borderColor) {
 }
 ```
 
-2) Require and execute viewloader component
+* Require and execute viewloader component
 
 ``` JavaScript
 // index.js
@@ -270,7 +244,7 @@ var scope = document.querySelector('.scope')
 domready(() => viewloader.execute(views, scope, false))
 ```
 
-3) Add data attributes int the HTML.
+* Add data attributes int the HTML.
 
 ``` HTML
 <!-- index.html -->
