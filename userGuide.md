@@ -55,7 +55,7 @@ And for additional ✨ it’ll parse JSON-encoded values from that attribute int
 
 ```HTML
 <input
-    data-view-hello-world="{\"greeting\":\"Guten tag",\"name\":\"Angela Merkel\"}">
+    data-view-hello-world="{"greeting":\"Guten tag",\"name\":\"Angela Merkel\"}">
 
 <script>
   import viewloader from "viewloader";

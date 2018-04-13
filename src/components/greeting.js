@@ -1,3 +1,3 @@
-module.exports = function greeting(el, name) {
-  console.log(`Hello ${name}`)
+module.exports = function greeting(el, props) {
+  el.value = `${props.greeting}, ${props.name}`
 }
