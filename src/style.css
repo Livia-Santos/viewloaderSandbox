@@ -10,6 +10,19 @@ section {
   margin-top: 50px;
 }
 
+/* Greeting Example */
+
+.greeting__input {
+  display: block;
+  margin: 0 auto 25px auto;
+  font-size: 24px;
+  width: 40%;
+  background-color: #f3f3f3
+}
+
+
+/* Change Div color Example */
+
 /* Setting the flexbox container */
 .color-box {
   width: 50%;
