@@ -19,7 +19,7 @@ Let’s create a "Hello, World!" component:
       el.value = "Hello, World!";
     }
   }
-  // Call viewloader with our "views" object whenever the DOM is ready
+  // Call Viewloader with our "views" object whenever the DOM is ready
   viewloader.execute(views);
 
 </script>
@@ -55,7 +55,7 @@ And for additional ✨ it’ll parse JSON-encoded values from that attribute int
 
 ```HTML
 <input
-    data-view-hello-world="{"greeting":\"Guten tag",\"name\":\"Angela Merkel\"}">
+    data-view-hello-world="{\"greeting\":\"Guten tag\",\"name\":\"Angela Merkel\"}">
 
 <script>
   import viewloader from "viewloader";
@@ -74,10 +74,7 @@ And for additional ✨ it’ll parse JSON-encoded values from that attribute int
 
 This gives you the power to create reusable components that can be "called" from your HTML with their own properties.
 
-[Needs sentence to wrap up and point to examples]
-
-* It’s just plain JavaScript
-* No restrictions on what you can do, but no checks on what you do (so be careful!)
+Viewloader is just plain JavaScript. There are no restrictions on what you can do, but no checks on what you do (so be careful!)
 
 ### Installation
 
@@ -97,9 +94,13 @@ This gives you the power to create reusable components that can be "called" from
 
 ### Detailed examples
 
-#### Show the power of per-instance props
+####  Customization with per-instance props
 
-* Create a viewloader component
+You can customize and reuse Viewloader components by providing different properties to each instance, through the data-view attribute.
+
+On this example we have components that change the background color of another element. Since color is the only thing that changes, we can send the color in as a parameter and use the same component multiple times.
+
+Let's create the color changer Viewloader component
 
 ```JavaScript
 // change-color.js
@@ -118,7 +119,7 @@ module.exports = function changeColor(el, color) {
 }
 ```
 
-* Require and execute viewloader component, using the domready library to guarantee the DOM state.
+Now we need to setup the component. We are using the domready library to guarantee everything will be in place.
 
 ```JavaScript
 // index.js
@@ -134,7 +135,7 @@ domready(() => viewloader.execute(views))
 
 ```
 
-* Add data attributes int the HTML.
+Finally we bind the component to the DOM nodes, by adding the data-view attributes with the various colors.
 
 ```HTML
 <!-- index.html -->
@@ -152,19 +153,25 @@ domready(() => viewloader.execute(views))
 </div>
 ```
 
-#### Using scope
+That's it! You can see a live version of this example [ here ](https://www.google.com).
+
+
+#### Show me the scope
 
 Viewloader execution can be scoped to specific elements, allowing it to be used
-only in specific parts of the template.
+only in specific parts of the template or to be applied only to new DOM elements.
 
 You can pass in a  `boolean` flag as the third parameter to indicate
-if the scope gets included or not in the viewloader execution.
+if the scope gets included or not in the Viewloader execution.
 
 `viewloader.execute(views, scope, boolean)`
 
 
-##### Including the scoped element
-* Create a viewloader component
+Let's create an example showing how to scope things with Viewloader, it's very simple :)
+
+We gonna have two boxes, a "main" box and an inner box. The inner box represents the "target" element.
+
+Let's create a simple Viewloader component that is going to change the border color of our boxes.
 
 ``` JavaScript
 // change-border.js
@@ -179,7 +186,10 @@ module.exports = function changeBorder(el, borderColor) {
 }
 ```
 
-* Require and execute viewloader component
+Now we need to setup the component and execute it, passing the scope. First we select the element to be the starting point of our scope (in that case our main box) and pass it as the second argument to the Viewloader execute function. The third argument is a boolean indicating if the element is included in the scope or not.
+
+
+It is worth remembering that the false scope is the default Viewloader behavior.
 
 ```JavaScript
 // index.js
@@ -191,66 +201,41 @@ var views = {
   changeBorder
 }
 
-var scope = document.querySelector('.scope')
+var scope_true = document.querySelector('.scope-true')
+var scope_false = document.querSelector('.scope-false')
 
-domready(() => viewloader.execute(views, scope, true))
+
+// include the scoped element
+domready(() => viewloader.execute(views, scope_true, true))
+
+//exclude the scoped element
+domready(() => viewloader.execute(views, scope_false, false))
+
+// default false
+domready(() => viewloader.execute(views, scope_false))
+
 ```
 
-* Add data attributes int the HTML.
+Last but not least, let's add the data-view attributes passing the border color. If it's gonna change or not depend on the scope you pass! Scopes are very handy and you can easily apply it, it's up to you now.
 
 ``` HTML
 <!-- index.html -->
+
+<!-- First set of boxes -->
 <div data-view-change-border=''>Not affected by Viewloader</div>
 
-<div class="scope-main-box scope" data-view-change-border='#10BFAB'>
+<div class="scope-main-box scope-true" data-view-change-border='#10BFAB'>
   initialized by Viewloader
 
   <div class="scope-inner-box" data-view-change-border='#F05051'>
     initialized by Viewloader
   </div>
 </div>
-```
 
-##### Excluding the scoped element
-* Create a viewloader component
-
-``` JavaScript
-// change-border.js
-module.exports = function changeBorder(el, borderColor) {
-  el.addEventListener('mouseover', function (e) {
-    el.style.border = `10px solid ${borderColor}`
-  })
-
-  el.addEventListener('mouseout', function (e) {
-    el.style.border = '5px solid black'
-  })
-}
-```
-
-* Require and execute viewloader component
-
-``` JavaScript
-// index.js
-import domready from 'domready';
-import viewloader from 'viewloader';
-import changeBorder from './components/change-border';
-
-var views = {
-  changeBorder
-}
-
-var scope = document.querySelector('.scope')
-
-domready(() => viewloader.execute(views, scope, false))
-```
-
-* Add data attributes int the HTML.
-
-``` HTML
-<!-- index.html -->
+<!-- Second set of Boxes -->
 <div data-view-change-border=''>Not affected by Viewloader</div>
 
-<div class="scope-main-box scope" data-view-change-border='#10BFAB'>
+<div class="scope-main-box scope-false" data-view-change-border='#10BFAB'>
   not affected by Viewloader
 
   <div class="scope-inner-box" data-view-change-border='#F05051'>
@@ -258,3 +243,5 @@ domready(() => viewloader.execute(views, scope, false))
   </div>
 </div>
 ```
+
+That's it! You can see a live version of this example [ here ](https://www.google.com).
