@@ -10,6 +10,19 @@ section {
   margin-top: 50px;
 }
 
+
+/* Reusable */
+
+.btn-default {
+  color: white;
+  font-size: 20px;
+  text-shadow: none;
+  border: 1px solid white;
+  padding: 15px;
+  border-radius: 4px;
+  background-color: #5C526F;
+}
+
 /* Greeting Example */
 
 .greeting__input {
@@ -18,6 +31,27 @@ section {
   font-size: 24px;
   width: 40%;
   background-color: #f3f3f3
+}
+
+/* Toggle Example */
+
+.toggle-test {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.toggle-nav-test {
+  display: none;
+  background-color: red;
+  width: 100%;
+  height: 50px;
+}
+
+.show {
+  display: block;
+  width: 100%;
+  background-color: red;
+  height: 50px;
 }
 
 
@@ -45,16 +79,6 @@ section {
   text-align: center;
   text-shadow:4px 4px 0 rgba(0,0,0,0.1);
   padding:10px;
-}
-
-.btn-default {
-  color: white;
-  font-size: 20px;
-  text-shadow: none;
-  border: 1px solid white;
-  padding: 15px;
-  border-radius: 4px;
-  background-color: #5C526F;
 }
 
 .scope-main-box {
