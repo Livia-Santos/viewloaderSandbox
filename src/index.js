@@ -4,12 +4,15 @@ import changeBtn from './components/change-btn';
 import changeColor from './components/change-color';
 import changeBorder from './components/change-border';
 import greeting from './components/greeting';
+import toggleClass from './components/toggle-class';
+
 import './style.css';
 
 var views = {
   changeBtn,
   changeColor,
-  greeting
+  greeting,
+  toggleClass
 };
 
 var scopeViews = {
