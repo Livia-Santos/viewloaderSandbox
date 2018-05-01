@@ -11,7 +11,7 @@
   `npm run server`
 
   To keep webpack running  
-  `npm watch`
+  `npm run watch`
 
   To run test (Jest)
   `npm run test`

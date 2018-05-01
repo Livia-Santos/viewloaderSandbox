@@ -5,6 +5,8 @@ import changeColor from './components/change-color';
 import changeBorder from './components/change-border';
 import greeting from './components/greeting';
 import toggleClass from './components/toggle-class';
+import embedMap from './components/embed-map';
+
 
 import './style.css';
 
@@ -12,7 +14,8 @@ var views = {
   changeBtn,
   changeColor,
   greeting,
-  toggleClass
+  toggleClass,
+  embedMap
 };
 
 var scopeViews = {

@@ -10,7 +10,6 @@ section {
   margin-top: 50px;
 }
 
-
 /* Reusable */
 
 .btn-default {
@@ -28,7 +27,7 @@ section {
 .greeting__input {
   display: block;
   margin: 0 auto 25px auto;
-  font-size: 24px;
+  font-size: 18px;
   width: 40%;
   background-color: #f3f3f3
 }
@@ -96,4 +95,12 @@ section {
   height: 150px;
   width:150px;
   transition: background-color 0.3s;
+}
+
+/* Maps */
+
+.map-container {
+  margin: 0 auto;
+  height: 400px;
+  width: 30%;
 }
