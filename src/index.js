@@ -7,9 +7,6 @@ import greeting from './components/greeting';
 import toggleClass from './components/toggle-class';
 import embedMap from './components/embed-map';
 
-
-import './style.css';
-
 var views = {
   changeBtn,
   changeColor,
