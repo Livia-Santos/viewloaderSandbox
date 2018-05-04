@@ -6,13 +6,16 @@ import changeBorder from './components/change-border';
 import greeting from './components/greeting';
 import toggleClass from './components/toggle-class';
 import embedMap from './components/embed-map';
+import imageGallery from './components/image-gallery';
+
 
 var views = {
   changeBtn,
   changeColor,
   greeting,
   toggleClass,
-  embedMap
+  embedMap,
+  imageGallery
 };
 
 var scopeViews = {
