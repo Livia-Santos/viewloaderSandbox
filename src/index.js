@@ -7,6 +7,7 @@ import greeting from './components/greeting';
 import toggleClass from './components/toggle-class';
 import embedMap from './components/embed-map';
 import imageGallery from './components/image-gallery';
+import ajaxRequest from './components/ajax-request';
 
 
 var views = {
@@ -15,7 +16,9 @@ var views = {
   greeting,
   toggleClass,
   embedMap,
-  imageGallery
+  imageGallery,
+  // incrementer,
+  ajaxRequest
 };
 
 var scopeViews = {
