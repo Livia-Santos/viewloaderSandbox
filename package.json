@@ -4,11 +4,12 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "watch": "webpack --mode=development --watch",
-    "server": "ruby -rwebrick -e'WEBrick::HTTPServer.new(:Port => 3000, :DocumentRoot => Dir.pwd).start'",
-    "test": "jest"
+    "server":
+      "ruby -rwebrick -e'WEBrick::HTTPServer.new(:Port => 3000, :DocumentRoot => Dir.pwd).start'",
+    "test": "jest",
+    "testwatch": "jest --watchAll"
   },
   "author": "",
   "license": "ISC",
