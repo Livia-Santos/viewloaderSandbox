@@ -1,14 +1,13 @@
-import domready from 'domready';
-import viewloader from 'viewloader';
-import changeBtn from './components/change-btn';
-import changeColor from './components/change-color';
-import changeBorder from './components/change-border';
-import greeting from './components/greeting';
-import toggleClass from './components/toggle-class';
-import embedMap from './components/embed-map';
-import imageGallery from './components/image-gallery';
-import ajaxRequest from './components/ajax-request';
-
+import domready from "domready";
+import viewloader from "viewloader";
+import changeBtn from "./components/change-btn";
+import changeColor from "./components/change-color";
+import changeBorder from "./components/change-border";
+import greeting from "./components/greeting";
+import toggleClass from "./components/toggle-class";
+import embedMap from "./components/embed-map";
+import imageGallery from "./components/image-gallery";
+import addToBasket from "./components/add-to-basket";
 
 var views = {
   changeBtn,
@@ -17,20 +16,18 @@ var views = {
   toggleClass,
   embedMap,
   imageGallery,
-  // incrementer,
-  ajaxRequest
+  addToBasket
 };
 
 var scopeViews = {
   changeBorder
-}
+};
 
-var includeScope = document.querySelector('.include-scope');
-var excludeScope = document.querySelector('.exclude-scope');
-
+var includeScope = document.querySelector(".include-scope");
+var excludeScope = document.querySelector(".exclude-scope");
 
 domready(() => {
-  viewloader.execute(views)
-  viewloader.execute(scopeViews, includeScope, true)
-  viewloader.execute(scopeViews, excludeScope, false)
-})
+  viewloader.execute(views);
+  viewloader.execute(scopeViews, includeScope, true);
+  viewloader.execute(scopeViews, excludeScope, false);
+});

@@ -80,15 +80,23 @@
     <img src="./src/img/img08.jpg" alt="mountain photo">
   </div>
 
-  <h1>Ajax Request</h1>
-  <button class="btn-default get-text" data-view-ajax-request='{"file":"./src/templates/books.json", "target":"output", "productNumber" : "0"}'>Add Product</button>
-  <button class="btn-default get-text" data-view-ajax-request='{"file":"./src/templates/books.json", "target":"output", "productNumber" : "1"}'>Add Product</button>
-  <button class="btn-default get-text" data-view-ajax-request='{"file":"./src/templates/books.json", "target":"output", "productNumber" : "2"}'>Add Product</button>
-
-  <h2> My Basket </h2>
-  <div class="output">
-    
+  <h1>Add to Basket</h1>
+  <div class="basket__container">
+    <div class="product">
+      <img src="./src/img/book1.jpg" alt="Harry Potter and Sorcerer's Stone cover">
+      <button class="btn-default" data-view-add-to-basket='{"file":"./src/data/product1.html", "target":"output"}'>Add Book</button>
+    </div>
+    <div class="product">
+      <img src="./src/img/book2.jpg" alt="Harry Potter and Chamber of secrets cover">
+      <button class="btn-default" data-view-add-to-basket='{"file":"./src/data/product2.html", "target":"output"}'>Add Book</button>
+    </div>
+    <div class="product">
+      <img src="./src/img/book3.jpg" alt="Harry Potter and Prisoner of Azkaban cover">
+      <button class="btn-default" data-view-add-to-basket='{"file":"./src/data/product3.html", "target":"output"}'>Add Book</button>
+    </div>
   </div>
+  <h2> My Basket </h2>
+  <div class="output"> </div>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDObqWvYRenuA4KR-Byx-sdXiNWJ8pQHPA"></script>
   <script src='./dist/bundle.js'></script>
